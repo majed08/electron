@@ -386,7 +386,7 @@ bool NodeBindings::IsInitialized() {
 
 // Initialize Node.js cli options to pass to Node.js
 // See https://nodejs.org/api/cli.html#cli_options
-void NodeBindings::SetNodeCliFlags() {
+void NodeBindings::SetNodeCliFlags(bool frozen_intrinsics) {
   const auto argv = base::CommandLine::ForCurrentProcess()->argv();
   std::vector<std::string> args;
 
@@ -410,6 +410,10 @@ void NodeBindings::SetNodeCliFlags() {
       args.push_back(option);
   }
 
+  if (frozen_intrinsics) {
+    args.push_back("--frozen-intrinsics");
+  }
+
   // We need to disable Node.js' fetch implementation to prevent
   // conflict with Blink's in renderer and worker processes.
   if (browser_env_ == BrowserEnvironment::kRenderer ||
@@ -429,7 +433,8 @@ void NodeBindings::SetNodeCliFlags() {
   }
 }
 
-void NodeBindings::Initialize(v8::Local<v8::Context> context) {
+void NodeBindings::Initialize(v8::Local<v8::Context> context,
+                              bool frozen_intrinsics) {
   TRACE_EVENT0("electron", "NodeBindings::Initialize");
   // Open node's error reporting system for browser process.
 
@@ -443,7 +448,7 @@ void NodeBindings::Initialize(v8::Local<v8::Context> context) {
   RegisterBuiltinBindings();
 
   // Parse and set Node.js cli flags.
-  SetNodeCliFlags();
+  SetNodeCliFlags(frozen_intrinsics);
 
   auto env = base::Environment::Create();
   SetNodeOptions(env.get());

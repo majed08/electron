@@ -90,9 +90,10 @@ class NodeBindings {
   virtual ~NodeBindings();
 
   // Setup V8, libuv.
-  void Initialize(v8::Local<v8::Context> context);
+  void Initialize(v8::Local<v8::Context> context,
+                  bool frozen_intrinsics = false);
 
-  void SetNodeCliFlags();
+  void SetNodeCliFlags(bool frozen_intrinsics);
 
   // Create the environment and load node.js.
   node::Environment* CreateEnvironment(v8::Handle<v8::Context> context,
