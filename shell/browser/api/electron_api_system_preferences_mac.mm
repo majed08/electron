@@ -620,7 +620,7 @@ void SystemPreferences::SetAppLevelAppearance(gin::Arguments* args) {
   }
 }
 
-bool SystemPreferences::AccessibilityDisplayShouldReduceTransparency() {
+bool SystemPreferences::GetAccessibilityDisplayShouldReduceTransparency() {
   return [[NSWorkspace sharedWorkspace]
       accessibilityDisplayShouldReduceTransparency];
 }
