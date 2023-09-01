@@ -3431,7 +3431,7 @@ describe('BrowserWindow module', () => {
         w.loadURL(pageUrl);
         const [, url] = await once(ipcMain, 'answer');
         const expectedUrl = process.platform === 'win32'
-          ? 'file:///' + htmlPath.replace(/\\/g, '/')
+          ? 'file:///' + htmlPath.replaceAll('\\', '/')
           : pageUrl;
         expect(url).to.equal(expectedUrl);
       });
@@ -3481,7 +3481,7 @@ describe('BrowserWindow module', () => {
         w.loadURL(pageUrl);
         const [, { url, frameName, options }] = await once(w.webContents, 'did-create-window') as [BrowserWindow, Electron.DidCreateWindowDetails];
         const expectedUrl = process.platform === 'win32'
-          ? 'file:///' + htmlPath.replace(/\\/g, '/')
+          ? 'file:///' + htmlPath.replaceAll('\\', '/')
           : pageUrl;
         expect(url).to.equal(expectedUrl);
         expect(frameName).to.equal('popup!');

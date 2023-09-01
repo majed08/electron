@@ -283,7 +283,7 @@ describe('web security', () => {
   describe('accessing file://', () => {
     async function loadFile (w: BrowserWindow) {
       const thisFile = url.format({
-        pathname: __filename.replace(/\\/g, '/'),
+        pathname: __filename.replaceAll('\\', '/'),
         protocol: 'file',
         slashes: true
       });
@@ -460,7 +460,7 @@ describe('command line switches', () => {
         throw new Error(`Process exited with code "${code}" signal "${signal}" output "${output}" stderr "${stderr}"`);
       }
 
-      output = output.replace(/(\r\n|\n|\r)/gm, '');
+      output = output.replaceAll(/(\r\n|\n|\r)/gm, '');
       expect(output).to.equal(result);
     };
 
@@ -1049,7 +1049,7 @@ describe('chromium features', () => {
     it('defines a window.location getter', async () => {
       let targetURL: string;
       if (process.platform === 'win32') {
-        targetURL = `file:///${fixturesPath.replace(/\\/g, '/')}/pages/base-page.html`;
+        targetURL = `file:///${fixturesPath.replaceAll('\\', '/')}/pages/base-page.html`;
       } else {
         targetURL = `file://${fixturesPath}/pages/base-page.html`;
       }
@@ -1976,7 +1976,7 @@ describe('chromium features', () => {
 
   ifdescribe(features.isPDFViewerEnabled())('PDF Viewer', () => {
     const pdfSource = url.format({
-      pathname: path.join(__dirname, 'fixtures', 'cat.pdf').replace(/\\/g, '/'),
+      pathname: path.join(__dirname, 'fixtures', 'cat.pdf').replaceAll('\\', '/'),
       protocol: 'file',
       slashes: true
     });

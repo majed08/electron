@@ -1127,7 +1127,7 @@ describe('protocol module', () => {
       protocol.handle('file', (req) => {
         let file;
         if (process.platform === 'win32') {
-          file = `file:///${filePath.replace(/\\/g, '/')}`;
+          file = `file:///${filePath.replaceAll('\\', '/')}`;
         } else {
           file = `file://${filePath}`;
         }

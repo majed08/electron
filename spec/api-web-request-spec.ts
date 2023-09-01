@@ -184,7 +184,7 @@ describe('webRequest module', () => {
         callback({ cancel: true });
       });
       const fileURL = url.format({
-        pathname: path.join(fixturesPath, 'blank.html').replace(/\\/g, '/'),
+        pathname: path.join(fixturesPath, 'blank.html').replaceAll('\\', '/'),
         protocol: 'file',
         slashes: true
       });
@@ -398,7 +398,7 @@ describe('webRequest module', () => {
         onSendHeadersCalled = true;
       });
       await ajax(url.format({
-        pathname: path.join(fixturesPath, 'blank.html').replace(/\\/g, '/'),
+        pathname: path.join(fixturesPath, 'blank.html').replaceAll('\\', '/'),
         protocol: 'file',
         slashes: true
       }));
