@@ -579,7 +579,7 @@ On Linux the setter is a no-op, although the getter returns `true`.
 
 A `boolean` property that determines whether the window is excluded from the application’s Windows menu. `false` by default.
 
-```js
+```js @ts-expect-error=[12]
 const { BaseWindow, Menu } = require('electron')
 const win = new BaseWindow({ height: 600, width: 600 })
 
