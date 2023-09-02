@@ -1,22 +1,22 @@
+اطلاعات الکترونیک -  
+عنوان: ارتباطات بین فرایند
+توصیف: از ماژول های ipcMain و IPCRender برای ارتباط بین فرایندهای الکترون استفاده کنید
+شلنگ: 
+پنهان: اشتباه
 ---
-title: Inter-Process Communication
-description: Use the ipcMain and ipcRenderer modules to communicate between Electron processes
-slug: ipc
-hide_title: false
----
 
-# Inter-Process Communication
+#      ارتباطات بین فرایند    
 
-Inter-process communication (IPC) is a key part of building feature-rich desktop applications
-in Electron. Because the main and renderer processes have different responsibilities in
-Electron's process model, IPC is the only way to perform many common tasks, such as calling a
-native API from your UI or triggering changes in your web contents from native menus.
+ارتباطات بین فرایندی (IPC) بخش کلیدی از برنامه های رومیزی غنی از ویژگی است
+در الکترونیک چون فرایندهای اصلی و اصلی مسئولیت های متفاوتی در آن دارند
+مدل فرایند الکترون، IPC تنها راه برای انجام کارهای معمول مانند فراخوانی
+API بومی از UI شما یا ایجاد تغییرات در محتویات وب شما از منوی بومی.
 
-## IPC channels
+##      کانال های IPC    
 
-In Electron, processes communicate by passing messages through developer-defined "channels"
-with the [`ipcMain`][] and [`ipcRenderer`][] modules. These channels are
-**arbitrary** (you can name them anything you want) and **bidirectional** (you can use the
+در الکترون، فرایندها با عبور پیام از طریق کانال های توسعه دهنده ارتباط برقرار می کنند.
+    با      [`ipcMain`]      و      [`ipcRender`]      ماژول ها این کانال ها هستند    
+**دلخوری**      (شما می توانید هر چیزی که می خواهید نام آن ها را بگذارید)      **پیشنهاد**      (می توانید از آن استفاده کنید    
 same channel name for both modules).
 
 In this guide, we'll be going over some fundamental IPC patterns with concrete examples that
